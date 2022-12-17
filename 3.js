@@ -2,13 +2,13 @@ window.addEventListener("load", () => {
   loadMessages();
 });
 
-async function addMessageToServer() {
+async function addMessageToServer(reply) {
   let textRef = document.querySelector("#textId1");
 
   let url = `http://localhost:3000/message`;
   let data = {
     message: textRef.value,
-    reply: 0,
+    reply: reply ? 1 : 0,
   };
 
   await axios.post(url, data);
@@ -35,12 +35,17 @@ async function loadMessages() {
     let hour = messageTime.getHours();
     let minute = messageTime.getMinutes();
 
-    let newElement = `<div class="d-flex justify-content-between align-items-center my-1">
-                        <div class="badge text-bg-secondary fs-6">
-                          ${item.message}
-                          <span class="ms-4" style="font-size: 10px">${hour}:${minute} pm</span>
+    let dclass = item.reply ? "justify-content-end" : "justify-content-start";
+
+    let newElement = `<div class="d-flex ${dclass}">
+                        <div class="d-flex justify-content-between align-items-center my-1">
+                          <div class="badge text-bg-secondary fs-6">
+                            ${item.message}
+                            <span class="ms-4" style="font-size: 10px">${hour}:${minute} pm</span>
+                          </div>
                         </div>
-                      </div>`;
+                      </div>
+                      `;
     parent.innerHTML = newElement + parent.innerHTML;
   }
   console.log(response);
