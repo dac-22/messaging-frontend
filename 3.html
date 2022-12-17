@@ -32,20 +32,34 @@
         placeholder="Enter ur messages"
         onkeyup="handleEnterCode(event)"
       />
+      <button
+        class="btn btn-info"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        &#128512;
+      </button>
       <input
         id="btnId1"
         class="btn btn-primary ms-1"
         type="button"
-        value="Add Message"
+        value="Add "
         onclick="addMessageToServer()"
       />
       <input
         id="btnId1"
         class="btn btn-secondary ms-1"
         type="button"
-        value="Reply Msg"
+        value="Reply"
         onclick="addMessageToServer(true)"
       />
+    </div>
+
+    <div class="collapse" id="collapseExample">
+      <div id="emojiId1" class="p-2 d-flex flex-wrap"></div>
     </div>
 
     <div id="parent"></div>
